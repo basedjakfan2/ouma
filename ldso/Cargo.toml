@@ -1,0 +1,5 @@
+[package]
+name = "ldso"
+version = "0.1.0"
+edition = "2021"
+license = "BSD-2-Clause"
