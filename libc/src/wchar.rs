@@ -32,7 +32,7 @@ pub extern "C" fn wmemmove(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -
 }
 
 #[no_mangle]
-pub extern "C" fn ata_wmemset(dest: *mut wchar_t, c: c_int, n: size_t) -> *mut wchar_t {
+pub extern "C" fn wmemset(dest: *mut wchar_t, c: c_int, n: size_t) -> *mut wchar_t {
 	let dest1: *mut wchar_t = dest as *mut wchar_t;
 	let mut i = n;
 

@@ -34,7 +34,7 @@ pub extern "C" fn memmove(dest: *mut c_void, src: *const c_void, n: size_t) -> *
 }
 
 #[no_mangle]
-pub extern "C" fn ata_memset(dest: *mut c_void, c: c_int, n: size_t) -> *mut c_void {
+pub extern "C" fn memset(dest: *mut c_void, c: c_int, n: size_t) -> *mut c_void {
 	let dest1: *mut c_char = dest as *mut c_char;
 	let mut i = n;
 
