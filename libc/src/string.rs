@@ -46,7 +46,7 @@ pub extern "C" fn memcmp(cx: *const c_void, ct: *const c_void, n: size_t) -> c_i
 
 // Adopted from Redox OS
 #[no_mangle]
-pub extern "C" fn ata_memccpy(dest: *mut c_void, src: *const c_void, c: c_int, n: size_t) -> *mut c_void {
+pub extern "C" fn memccpy(dest: *mut c_void, src: *const c_void, c: c_int, n: size_t) -> *mut c_void {
 	let to = memchr(src, c, n);
 	if to.is_null() {
 		return to;
