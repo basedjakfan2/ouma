@@ -1,5 +1,11 @@
+use crate::basic_types::c_int;
 use crate::basic_types::size_t;
 use crate::basic_types::wchar_t;
+
+#[no_mangle]
+pub extern "C" fn wmemcpy(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -> *mut wchar_t {
+	return wmemmove(dest, src, n);
+}
 
 #[no_mangle]
 pub extern "C" fn wmemmove(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -> *mut wchar_t {
@@ -26,6 +32,14 @@ pub extern "C" fn wmemmove(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -
 }
 
 #[no_mangle]
-pub extern "C" fn wmemcpy(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -> *mut wchar_t {
-	return wmemmove(dest, src, n);
+pub extern "C" fn ata_wmemset(dest: *mut wchar_t, c: c_int, n: size_t) -> *mut wchar_t {
+	let dest1: *mut wchar_t = dest as *mut wchar_t;
+	let mut i = n;
+
+	while i > 0 {
+		i -= 1;
+		unsafe { *(dest1).add(i) = c as wchar_t; }
+	}
+
+	return dest;
 }

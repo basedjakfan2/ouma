@@ -21,7 +21,19 @@ pub type ssize_t = isize;
 
 // platform specific types
 #[cfg(target_arch = "x86")]
+pub type c_long = crate::arch::x86::c_long;
+
+#[cfg(target_arch = "x86")]
+pub type c_ulong = crate::arch::x86::c_ulong;
+
+#[cfg(target_arch = "x86")]
 pub type wchar_t = crate::arch::x86::wchar_t;
+
+#[cfg(target_arch = "x86_64")]
+pub type c_long = crate::arch::x86_64::c_long;
+
+#[cfg(target_arch = "x86_64")]
+pub type c_ulong = crate::arch::x86_64::c_ulong;
 
 #[cfg(target_arch = "x86_64")]
 pub type wchar_t = crate::arch::x86_64::wchar_t;
