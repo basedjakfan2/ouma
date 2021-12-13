@@ -1,16 +1,19 @@
-#[no_mangle]
-pub extern "C" fn wmemmove(dest: *mut i32, src: *const i32, n: usize) -> *mut i32 {
-	let dest1: *mut i32 = dest;
-	let src1: *const i32 = src;
+use crate::basic_types::size_t;
+use crate::basic_types::wchar_t;
 
-	if (dest1 as *const i32) < src1 {
+#[no_mangle]
+pub extern "C" fn wmemmove(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -> *mut wchar_t {
+	let dest1: *mut wchar_t = dest;
+	let src1: *const wchar_t = src;
+
+	if (dest1 as *const wchar_t) < src1 {
 		let mut i = 0;
 
 		while i < n {
 			unsafe { *(dest1).add(i) = *(src1).add(i); }
 			i += 1;
 		}
-	} else if (dest1 as *const i32) > src1 {
+	} else if (dest1 as *const wchar_t) > src1 {
 		let mut i = n;
 
 		while i > 0 {
@@ -23,6 +26,6 @@ pub extern "C" fn wmemmove(dest: *mut i32, src: *const i32, n: usize) -> *mut i3
 }
 
 #[no_mangle]
-pub extern "C" fn wmemcpy(dest: *mut i32, src: *const i32, n: usize) -> *mut i32 {
+pub extern "C" fn wmemcpy(dest: *mut wchar_t, src: *const wchar_t, n: size_t) -> *mut wchar_t {
 	return wmemmove(dest, src, n);
 }

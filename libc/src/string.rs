@@ -1,18 +1,20 @@
 use core::ffi::c_void;
+use crate::basic_types::c_char;
+use crate::basic_types::size_t;
 
 #[no_mangle]
-pub extern "C" fn memmove(dest: *mut c_void, src: *const c_void, n: usize) -> *mut c_void {
-	let dest1: *mut i8 = dest as *mut i8;
-	let src1: *const i8 = src as *const i8;
+pub extern "C" fn memmove(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_void {
+	let dest1: *mut i8 = dest as *mut c_char;
+	let src1: *const i8 = src as *const c_char;
 
-	if (dest1 as *const i8) < src1 {
+	if (dest1 as *const c_char) < src1 {
 		let mut i = 0;
 
 		while i < n {
 			unsafe { *(dest1).add(i) = *(src1).add(i); }
 			i += 1;
 		}
-	} else if (dest1 as *const i8) > src1 {
+	} else if (dest1 as *const c_char) > src1 {
 		let mut i = n;
 
 		while i > 0 {
@@ -25,6 +27,6 @@ pub extern "C" fn memmove(dest: *mut c_void, src: *const c_void, n: usize) -> *m
 }
 
 #[no_mangle]
-pub extern "C" fn memcpy(dest: *mut c_void, src: *const c_void, n: usize) -> *mut c_void {
+pub extern "C" fn memcpy(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_void {
 	return memmove(dest, src, n);
 }
