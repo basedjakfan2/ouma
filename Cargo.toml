@@ -1,10 +1,8 @@
 [profile.dev]
 panic = "abort"
-lto = false
 
 [profile.release]
 panic = "abort"
-lto = false
 
 [workspace]
 members = [
